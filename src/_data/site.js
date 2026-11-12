@@ -16,6 +16,9 @@ export default {
   // Empty → the contact page falls back to a tinted OpenStreetMap.
   maps_key: process.env.GOOGLE_MAPS_API_KEY || "",
   repo: `https://github.com/${process.env.GITHUB_REPOSITORY || "D-SENG-TECH/official-website"}`,
+  // Password gate for preview pages (front matter `password_gate: true`). Static hosting: this only
+  // keeps casual visitors out; the page assets stay publicly fetchable. SHA-256 of "d-seng-gate:" + password.
+  gate_hash: "d741ce6f7e3ba4853bd0935d916d8ea21f939a0f1cdd01169142873d2315a9a1",
   // Google Tag Manager container (GA4 is configured inside GTM). Loaded on production only,
   // so preview-site testing does not pollute analytics.
   gtm_id: "GTM-TWTN3GKQ",

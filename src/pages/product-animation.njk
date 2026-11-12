@@ -1,6 +1,8 @@
 ---
 page_key: product_animation
 page_path: product-animation/
+password_gate: true
+noindex: true
 ---
 {%- set t = i18n[lang.code] -%}
 {%- set pa = t.product_animation -%}
@@ -33,7 +35,8 @@ page_path: product-animation/
 <noscript><p class="wrap small-note">{{ pa.noscript }}</p></noscript>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <script type="module">
-  import { startHero } from "/assets/product-animation/main.js";
+  await window.pageUnlocked;
+  const { startHero } = await import("/assets/product-animation/main.js");
   const root = document.documentElement;
   const header = document.querySelector(".site-header");
   const setHeader = () => root.style.setProperty("--showcase-top", (header?.offsetHeight ?? 0) + "px");

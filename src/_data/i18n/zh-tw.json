@@ -21,7 +21,11 @@
     "fax_label": "傳真",
     "email_label": "Email",
     "map_link": "在 Google 地圖開啟",
-    "version_label": "版本"
+    "version_label": "版本",
+    "gate_title": "此頁面需要密碼",
+    "gate_label": "請輸入密碼",
+    "gate_submit": "進入",
+    "gate_error": "密碼錯誤，請再試一次。"
   },
   "nav": {
     "home": "首頁",

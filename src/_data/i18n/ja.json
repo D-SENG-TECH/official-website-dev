@@ -21,7 +21,11 @@
     "fax_label": "FAX",
     "email_label": "Email",
     "map_link": "Google マップで開く",
-    "version_label": "バージョン"
+    "version_label": "バージョン",
+    "gate_title": "このページはパスワードで保護されています",
+    "gate_label": "パスワード",
+    "gate_submit": "入る",
+    "gate_error": "パスワードが違います。もう一度お試しください。"
   },
   "nav": {
     "home": "ホーム",

@@ -98,6 +98,21 @@
     dataLayer.push({ site_lang: "{{ lang.code }}" });
   </script>
   {%- endif %}
+  {%- if password_gate %}
+  <style>.gate { display: none; } html.gate-locked .gate { display: grid; } html.gate-locked main { display: none; }</style>
+  <script>
+    /* Password gate: page scripts wait on window.pageUnlocked before loading anything heavy */
+    (() => {
+      const key = "dseng_gate";
+      let ok = false;
+      try { ok = sessionStorage.getItem(key) === "{{ site.gate_hash }}"; } catch {}
+      let unlock;
+      window.pageUnlocked = new Promise((r) => (unlock = r));
+      window.__gateUnlock = () => { document.documentElement.classList.remove("gate-locked"); unlock(); };
+      if (ok) unlock(); else document.documentElement.classList.add("gate-locked");
+    })();
+  </script>
+  {%- endif %}
 </head>
 <body class="lang-{{ lang.code }}">
   {%- if site.gtm_id and site.env == "production" %}
@@ -158,6 +173,32 @@
   })();
   </script>
 
+  {%- if password_gate %}
+  <section class="gate" aria-labelledby="gate-title">
+    <form class="gate__form" id="gate-form">
+      <h1 id="gate-title">{{ t.common.gate_title }}</h1>
+      <label for="gate-pw">{{ t.common.gate_label }}</label>
+      <input id="gate-pw" type="password" inputmode="numeric" autocomplete="off" required>
+      <button class="button" type="submit">{{ t.common.gate_submit }}</button>
+      <p class="gate__error" id="gate-error" role="alert" hidden>{{ t.common.gate_error }}</p>
+    </form>
+  </section>
+  <script>
+    document.getElementById("gate-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const pw = document.getElementById("gate-pw");
+      const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode("d-seng-gate:" + pw.value));
+      const hex = [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
+      if (hex === "{{ site.gate_hash }}") {
+        try { sessionStorage.setItem("dseng_gate", hex); } catch {}
+        window.__gateUnlock();
+      } else {
+        document.getElementById("gate-error").hidden = false;
+        pw.select();
+      }
+    });
+  </script>
+  {%- endif %}
   <main id="main">
     {{ content | safe }}
   </main>

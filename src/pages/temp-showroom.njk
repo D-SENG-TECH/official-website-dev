@@ -2,6 +2,7 @@
 page_key: product_animation
 page_path: temp/showroom/
 noindex: true
+password_gate: true
 ---
 {%- set t = i18n[lang.code] -%}
 {#- Temporary parking page for the 3D showroom hero (taken off the home page; not linked, not indexed). -#}
@@ -35,6 +36,7 @@ noindex: true
 </section>
 <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js","three/addons/":"https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"}}</script>
 <script type="module">
+  await window.pageUnlocked;
   const el = document.getElementById("hero3d");
   const products = {{ pa.scenes | dump | safe }};
   const L = {{ { "pause": t.home.pause, "resume": t.home.resume, "mute": t.home.mute, "unmute": t.home.unmute } | dump | safe }};

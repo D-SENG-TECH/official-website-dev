@@ -139,3 +139,8 @@
 
 - **決策**：業主要求先終止首頁的 3D 展示間，退回原本的靜態設備照片 hero。展示間（含四語旁白）整段搬到 `/temp/showroom/`，不連結、不進 sitemap，並加上 noindex（`base.njk` 支援頁面 front matter `noindex: true`）。`/product-animation/` 與 3D 資產維持不動，之後要恢復時把暫存頁的區塊搬回 `index.njk` 即可。
 - **why**：保留已完成的成果供內部檢視，同時讓正式首頁回到穩定版本。
+
+## 20:40 — 預覽頁加上密碼門
+
+- **決策**：`/product-animation/` 與 `/temp/showroom/` 改成要輸入密碼才看得到（front matter `password_gate: true`，兩頁也都加 noindex）。密碼在瀏覽器端比對 SHA-256 雜湊，repo 只存雜湊不存明碼；通過後記在 sessionStorage，同一分頁重新整理不用再輸入。頁面的 3D 程式在解鎖後才動態載入，鎖住時不下載任何模型或音檔。
+- **限制**：GitHub Pages 是純靜態主機，沒有伺服器端驗證，這道門只擋一般訪客——3D 模型、音檔仍是公開網址，短數字密碼也能在瀏覽器端被暴力試出。真正需要保密時要改用 Cloudflare Access 之類的前置驗證，或把頁面移出公開 repo。

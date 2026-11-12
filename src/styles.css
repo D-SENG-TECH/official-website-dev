@@ -774,3 +774,11 @@ a { color: inherit; }
   .showcase__panel { align-items: flex-end; padding-bottom: 56px; }
   .showcase__stage::after { background: linear-gradient(0deg, rgb(6 20 38 / .9) 0%, rgb(6 20 38 / .5) 35%, transparent 60%); }
 }
+
+/* Password gate (preview pages) */
+.gate { min-height: 60vh; place-items: center; padding: 64px 24px; background: var(--tint); }
+.gate__form { width: min(360px, 100%); display: grid; gap: 12px; padding: 32px; border-radius: 12px; background: #fff; box-shadow: 0 10px 30px rgb(20 40 75 / .1); }
+.gate__form h1 { font-size: 22px; }
+.gate__form input { padding: 12px 14px; border: 1px solid var(--line); border-radius: 6px; font: inherit; font-size: 18px; letter-spacing: .3em; }
+.gate__form .button { margin-top: 4px; border: 0; cursor: pointer; font: inherit; font-weight: 700; }
+.gate__error { color: #b42318; font-size: 14px; }

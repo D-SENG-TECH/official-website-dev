@@ -21,7 +21,11 @@
     "fax_label": "传真",
     "email_label": "邮箱",
     "map_link": "在 Google 地图中打开",
-    "version_label": "版本"
+    "version_label": "版本",
+    "gate_title": "此页面需要密码",
+    "gate_label": "请输入密码",
+    "gate_submit": "进入",
+    "gate_error": "密码错误，请再试一次。"
   },
   "nav": {
     "home": "首页",

@@ -21,7 +21,11 @@
     "fax_label": "Fax",
     "email_label": "Email",
     "map_link": "Open in Google Maps",
-    "version_label": "Version"
+    "version_label": "Version",
+    "gate_title": "This page is password-protected",
+    "gate_label": "Password",
+    "gate_submit": "Enter",
+    "gate_error": "Wrong password. Please try again."
   },
   "nav": {
     "home": "Home",
